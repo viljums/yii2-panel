@@ -39,6 +39,11 @@ class PanelLogic extends Component
             $route = $panelController['route'];
 
             $configParams = $panelController['params'] ?? [];
+            
+            if(is_callable($configParams)) {
+                $configParams = $configParams();
+            }
+
             foreach ($this->params as $paramName => $paramValue) {
                 $configParams[$paramName] = $paramValue;
             }
